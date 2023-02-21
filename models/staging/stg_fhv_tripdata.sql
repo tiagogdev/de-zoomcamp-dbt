@@ -16,6 +16,7 @@ select
     cast(SR_Flag as float64) as sr_flag,
     cast(Affiliated_base_number as string) as affiliated_base_number
 from {{ source('staging','fhv_tripdata') }}
+where date(pickup_datetime) >= Date(2019,01,01) and date(pickup_datetime) <= Date(2019, 12, 31)
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
