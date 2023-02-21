@@ -38,7 +38,7 @@ select
     {{ get_payment_type_description('payment_type') }} as payment_type_description, 
     cast(congestion_surcharge as numeric) as congestion_surcharge
 from tripdata
-where rn = 1
+where rn = 1 and date(lpep_pickup_datetime) >= Date(2019,01,01) and date(lpep_pickup_datetime) <= Date(2020, 12, 31)
 
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
